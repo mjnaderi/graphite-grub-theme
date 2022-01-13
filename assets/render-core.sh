@@ -45,7 +45,7 @@ while read -r i; do
   fi
 done < "$INDEX"
 
-if [[ "$EXPORT_TYPE" == "icons" ]]; then
+if [[ "$1" == "logos" ]]; then
   cd "$ASSETS_DIR" || exit 1
   cp -a archlinux.png arch.png
   cp -a gnu-linux.png linux.png
