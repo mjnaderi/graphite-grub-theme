@@ -15,7 +15,7 @@ REO_DIR="$(cd $(dirname $0) && pwd)"
 }
 
 name=Graphite
-SCREEN_VARIANTS=('1080p' '2k' '4k')
+SCREEN_VARIANTS=('1080p' '2k' '4k' '3200x2000')
 
 #COLORS
 CDEF=" \033[0m"                                     # default color
@@ -55,7 +55,7 @@ usage() {
   printf "%s\n" "Usage: ${0##*/} [OPTIONS...]"
   printf "\n%s\n" "OPTIONS:"
   printf "  %-25s%s\n" "-b, --boot" "install grub theme into /boot/grub/themes"
-  printf "  %-25s%s\n" "-s, --screen" "screen display variant(s) [1080p|2k|4k] (default is 1080p)"
+  printf "  %-25s%s\n" "-s, --screen" "screen display variant(s) [1080p|2k|4k|3200x2000] (default is 1080p)"
   printf "  %-25s%s\n" "-r, --remove" "Remove theme (must add theme name option)"
   printf "  %-25s%s\n" "-h, --help" "Show this help"
 }
@@ -81,7 +81,7 @@ install() {
     # Don't preserve ownership because the owner will be root, and that causes the script to crash if it is ran from terminal by sudo
     cp -a --no-preserve=ownership "${REO_DIR}/common/"{*.png,*.pf2} "${THEME_DIR}"
     cp -a --no-preserve=ownership "${REO_DIR}/config/theme-${screen}.txt" "${THEME_DIR}/theme.txt"
-    cp -a --no-preserve=ownership "${REO_DIR}/backgrounds/${screen}/wave-dark.jpg" "${THEME_DIR}/${theme}/background.jpg"
+    cp -a --no-preserve=ownership "${REO_DIR}/backgrounds/${screen}/wave-dark.png" "${THEME_DIR}/${theme}/background.png"
     cp -a --no-preserve=ownership "${REO_DIR}/assets/logos/${screen}" "${THEME_DIR}/${theme}/icons"
     cp -a --no-preserve=ownership "${REO_DIR}/assets/assets/${screen}/"*.png "${THEME_DIR}/${theme}"
 
@@ -128,6 +128,8 @@ install() {
       gfxmode="GRUB_GFXMODE=3840x2160,auto"
     elif [[ ${screen} == '2k' ]]; then
       gfxmode="GRUB_GFXMODE=2560x1440,auto"
+    elif [[ ${screen} == '3200x2000' ]]; then
+      gfxmode="GRUB_GFXMODE=3200x2000,auto"
     fi
 
     if grep "GRUB_GFXMODE=" /etc/default/grub 2>&1 >/dev/null; then
@@ -301,6 +303,10 @@ while [[ $# -gt 0 ]]; do
             ;;
           4k)
             screens+=("${SCREEN_VARIANTS[2]}")
+            shift
+            ;;
+          3200x2000)
+            screens+=("${SCREEN_VARIANTS[3]}")
             shift
             ;;
           -*|--*)

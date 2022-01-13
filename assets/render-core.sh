@@ -20,8 +20,11 @@ elif [[ "$2" == "2k" ]]; then
 elif [[ "$2" == "4k" ]]; then
   ASSETS_DIR="$1/4k"
   EXPORT_DPI="192"
+elif [[ "$2" == "3200x2000" ]]; then
+  ASSETS_DIR="$1/3200x2000"
+  EXPORT_DPI="177.7778"
 else
-  echo "Please use either '1080p', '2k' or '4k'"
+  echo "Please use either '1080p', '2k', '4k' or '3200x2000'"
   exit 1
 fi
 

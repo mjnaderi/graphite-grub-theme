@@ -1,5 +1,10 @@
 # Graphite Grub2 theme
 
+Original theme: https://github.com/vinceliuice/Graphite-gtk-theme/tree/main/other/grub2
+
+I added support for 3200x2000 screen.
+
+
 ![preview](preview.svg?raw=true)
 
 ## Installation
@@ -17,7 +22,7 @@ Usage:  `sudo ./install.sh [OPTIONS...]`
 |  Options:              | Description: |
 |:-----------------------|:-------------|
 | -b, --boot             | Install grub theme into `/boot/grub/themes` |
-| -s, --screen           | screen display variant(s) [1080p/2k/4k] (default is 1080p) |
+| -s, --screen           | screen display variant(s) [1080p/2k/4k/3200x2000] (default is 1080p) |
 | -r, --remove           | Uninstall theme |
 | -h, --help             | Show this help |
 
